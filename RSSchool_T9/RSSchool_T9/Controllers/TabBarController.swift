@@ -13,7 +13,6 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
      
         self.tabBar.tintColor = UIColor.systemRed
-        //UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Medium", size: 20)], for: .selected)
     }
     
 }
