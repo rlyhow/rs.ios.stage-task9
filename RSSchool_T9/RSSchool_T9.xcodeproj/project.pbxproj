@@ -14,6 +14,12 @@
 		105169C726B9853A0042AC17 /* ButtonGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C626B9853A0042AC17 /* ButtonGallery.swift */; };
 		105169C926B9E0620042AC17 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C826B9E0620042AC17 /* ImageViewController.swift */; };
 		105169CF26BACE5E0042AC17 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169CE26BACE5E0042AC17 /* CanvasView.swift */; };
+		105169D226BB0C2F0042AC17 /* story-5-path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169D126BB0C2F0042AC17 /* story-5-path.swift */; };
+		105169D526BB13C00042AC17 /* story-6-path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169D426BB13C00042AC17 /* story-6-path.swift */; };
+		105169D726BB18210042AC17 /* s5-text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 105169D626BB18210042AC17 /* s5-text.txt */; };
+		105169D926BB18480042AC17 /* s5-title.txt in Resources */ = {isa = PBXBuildFile; fileRef = 105169D826BB18480042AC17 /* s5-title.txt */; };
+		105169DB26BB1A490042AC17 /* s6-text.txt in Resources */ = {isa = PBXBuildFile; fileRef = 105169DA26BB1A490042AC17 /* s6-text.txt */; };
+		105169DD26BB1A5C0042AC17 /* s6-title.txt in Resources */ = {isa = PBXBuildFile; fileRef = 105169DC26BB1A5C0042AC17 /* s6-title.txt */; };
 		105E0B0826B8264600A4C087 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105E0B0726B8264600A4C087 /* DetailsViewController.swift */; };
 		1072396B26B151F100FDED9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396A26B151F100FDED9A /* AppDelegate.swift */; };
 		1072396D26B151F100FDED9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396C26B151F100FDED9A /* SceneDelegate.swift */; };
@@ -50,6 +56,12 @@
 		105169C626B9853A0042AC17 /* ButtonGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGallery.swift; sourceTree = "<group>"; };
 		105169C826B9E0620042AC17 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		105169CE26BACE5E0042AC17 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		105169D126BB0C2F0042AC17 /* story-5-path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "story-5-path.swift"; sourceTree = "<group>"; };
+		105169D426BB13C00042AC17 /* story-6-path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "story-6-path.swift"; sourceTree = "<group>"; };
+		105169D626BB18210042AC17 /* s5-text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "s5-text.txt"; sourceTree = "<group>"; };
+		105169D826BB18480042AC17 /* s5-title.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "s5-title.txt"; sourceTree = "<group>"; };
+		105169DA26BB1A490042AC17 /* s6-text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "s6-text.txt"; sourceTree = "<group>"; };
+		105169DC26BB1A5C0042AC17 /* s6-title.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "s6-title.txt"; sourceTree = "<group>"; };
 		105E0B0726B8264600A4C087 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		1072396726B151F100FDED9A /* RSSchool_T9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSchool_T9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1072396A26B151F100FDED9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +121,26 @@
 				10508CB126B3EDF300D8A965 /* UIColor+CustomColor.m */,
 			);
 			path = CustomColors;
+			sourceTree = "<group>";
+		};
+		105169D026BB0C0B0042AC17 /* story-5 */ = {
+			isa = PBXGroup;
+			children = (
+				105169D126BB0C2F0042AC17 /* story-5-path.swift */,
+				105169D626BB18210042AC17 /* s5-text.txt */,
+				105169D826BB18480042AC17 /* s5-title.txt */,
+			);
+			path = "story-5";
+			sourceTree = "<group>";
+		};
+		105169D326BB11570042AC17 /* story-6 */ = {
+			isa = PBXGroup;
+			children = (
+				105169D426BB13C00042AC17 /* story-6-path.swift */,
+				105169DA26BB1A490042AC17 /* s6-text.txt */,
+				105169DC26BB1A5C0042AC17 /* s6-title.txt */,
+			);
+			path = "story-6";
 			sourceTree = "<group>";
 		};
 		1072395E26B151F100FDED9A = {
@@ -174,6 +206,8 @@
 		10B1605E26B5B6DB00277B54 /* Static */ = {
 			isa = PBXGroup;
 			children = (
+				105169D326BB11570042AC17 /* story-6 */,
+				105169D026BB0C0B0042AC17 /* story-5 */,
 				10B1605F26B5B6DB00277B54 /* story-3 */,
 				10B1606326B5B6DB00277B54 /* story-4 */,
 				10B1606726B5B6DB00277B54 /* story-2 */,
@@ -325,14 +359,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B1607726B5B6DB00277B54 /* s2-text.txt in Resources */,
+				105169DB26BB1A490042AC17 /* s6-text.txt in Resources */,
 				10B1607626B5B6DB00277B54 /* s2-title.txt in Resources */,
+				105169D726BB18210042AC17 /* s5-text.txt in Resources */,
 				10B1607026B5B6DB00277B54 /* s3-text.txt in Resources */,
 				1072397726B151F200FDED9A /* LaunchScreen.storyboard in Resources */,
 				10B1607926B5B6DB00277B54 /* s1-text.txt in Resources */,
 				10B1607426B5B6DB00277B54 /* s4-text.txt in Resources */,
 				1072397426B151F200FDED9A /* Assets.xcassets in Resources */,
 				10B1607326B5B6DB00277B54 /* s4-title.txt in Resources */,
+				105169D926BB18480042AC17 /* s5-title.txt in Resources */,
 				10B1607126B5B6DB00277B54 /* s3-title.txt in Resources */,
+				105169DD26BB1A5C0042AC17 /* s6-title.txt in Resources */,
 				10B1607B26B5B6DB00277B54 /* s1-title.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,10 +382,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105169D526BB13C00042AC17 /* story-6-path.swift in Sources */,
 				105169C526B937250042AC17 /* MainImage.swift in Sources */,
 				1072398026B16FFF00FDED9A /* TabBarController.swift in Sources */,
 				105169C926B9E0620042AC17 /* ImageViewController.swift in Sources */,
 				10D3164426B1E8E800EEEB8C /* ColorsViewController.m in Sources */,
+				105169D226BB0C2F0042AC17 /* story-5-path.swift in Sources */,
 				1072396B26B151F100FDED9A /* AppDelegate.swift in Sources */,
 				10B1607226B5B6DB00277B54 /* story-3-path.swift in Sources */,
 				10B1606F26B5B6DB00277B54 /* Data.swift in Sources */,
