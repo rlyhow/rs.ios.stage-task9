@@ -265,6 +265,7 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
             for i in canvasImages.indices {
                 if scrollView.bounds.contains(scrollView.convert(canvasImages[i].bounds, from: canvasImages[i])) {
                     if canvasImages[i].layer.sublayers?.count == nil {
+                        
                         let shapeLayer = CAShapeLayer()
                         shapeLayer.path = pathsOfImages![i]
                         shapeLayer.strokeStart = 0
@@ -272,15 +273,15 @@ class DetailsViewController: UIViewController, UIScrollViewDelegate {
                         shapeLayer.strokeColor = UIColor.yellow.cgColor
                         shapeLayer.fillColor = UIColor.clear.cgColor
                         shapeLayer.lineWidth = 1
-                        
+
                         canvasImages[i].layer.addSublayer(shapeLayer)
-                        
+
                         Timer.scheduledTimer(withTimeInterval: 0.0167, repeats: true) { timer in
-                            
+
                             if (shapeLayer.strokeEnd >= 1) {
                                 timer.invalidate()
                             }
-                            
+
                             let line:CGFloat = 1.0 / (60.0 * 3)
                             shapeLayer.strokeEnd += line
                         }
