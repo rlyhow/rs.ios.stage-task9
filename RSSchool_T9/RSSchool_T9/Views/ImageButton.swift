@@ -8,15 +8,17 @@
 import UIKit
 
 class ImageButton: UIButton {
-        
+    
+    private(set) var images: [UIImage] = []
     private(set) var title: String = "string"
     private(set) var subTitle: String = "string"
+    private(set) var text: String?
     private(set) var coverImage: UIImage = UIImage("story-1")
-    var gradientView = UIView(frame: CGRect.zero)
-    var gradient = CAGradientLayer()
+    private(set) var gradientView = UIView(frame: CGRect.zero)
+    private(set) var gradient = CAGradientLayer()
     
-    private lazy var backImage: UIImageView = {
-        let imageView = UIImageView(image: coverImage)
+    private lazy var backImage: UIImageView = { [unowned self] in
+        let imageView = UIImageView(image: self.coverImage)
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 1.0
         imageView.clipsToBounds = true
@@ -24,11 +26,13 @@ class ImageButton: UIButton {
         return imageView
     }()
     
-    init(title: String, coverImage: UIImage, subtitle: String) {
+    init(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String) {
         super.init(frame: .zero)
         self.title = title
         self.coverImage = coverImage
         self.subTitle = subtitle
+        self.images = images
+        self.text = text
         setup()
         setupTitle()
         setupSubtitle()
@@ -41,6 +45,13 @@ class ImageButton: UIButton {
         setupSubtitle()
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.point(inside: point, with: event) {
+            return self
+        }
+        return super.hitTest(point, with: event)
+    }
+    
     func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.23).isActive = true
@@ -48,6 +59,8 @@ class ImageButton: UIButton {
         layer.borderWidth = 1
         layer.borderColor = (UIColor.black).cgColor
         layer.cornerRadius = 18
+        
+        //backgroundColor = .black
 
         addSubview(backImage)
         backImage.translatesAutoresizingMaskIntoConstraints = false
@@ -75,12 +88,12 @@ class ImageButton: UIButton {
         
         let label = UILabel(frame: CGRect.zero)
         label.attributedText = attributedHeading
-        label.lineBreakMode = .byCharWrapping
+        label.lineBreakMode = .byTruncatingTail
         
         gradientView.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+        label.widthAnchor.constraint(equalTo: gradientView.widthAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.45).isActive = true
     }
@@ -100,7 +113,6 @@ class ImageButton: UIButton {
         
         let label2 = UILabel(frame: CGRect.zero)
         label2.attributedText = attributedHeading2
-        label2.lineBreakMode = .byCharWrapping
         
         gradientView.addSubview(label2)
         

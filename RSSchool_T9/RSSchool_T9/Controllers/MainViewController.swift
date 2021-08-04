@@ -10,11 +10,9 @@ import UIKit
 class MainViewController: UIViewController {
     
     let scrollView = UIScrollView()
-    let contentView = UIView()
     
     var portrait:[NSLayoutConstraint]?
     var landscape:[NSLayoutConstraint]?
-    var isPortrait: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +26,6 @@ class MainViewController: UIViewController {
     func setupScrollView(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-        isPortrait = UIDevice.current.orientation.isPortrait
         
         view.addSubview(scrollView)
         scrollView.addSubview(horizontalStack)
@@ -57,8 +54,8 @@ class MainViewController: UIViewController {
         ]
         
         landscape = [
-            horizontalStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 200),
-            horizontalStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -200)
+            horizontalStack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 180),
+            horizontalStack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -180)
         ]
     }
     
@@ -66,20 +63,19 @@ class MainViewController: UIViewController {
         horizontalStack.addArrangedSubview(leftRow)
         horizontalStack.addArrangedSubview(rightRow)
         
-        
         for item in FillingData.data {
             switch item {
             case .story(let object):
-                leftRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Story"))
+                leftRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Story", images: [], text: object.text))
             case .gallery(let object):
-                rightRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Gallery"))
+                rightRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Gallery", images: object.images, text: ""))
             }
         }
     }
     
-    func buildButton(title: String, coverImage: UIImage, subtitle: String) -> ImageButton {
-        let button = ImageButton(title: title, coverImage: coverImage, subtitle: subtitle)
-        //button.addTarget(self, action: #selector(paletteButtonHandler(_:)), for: .touchUpInside)
+    func buildButton(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String) -> ImageButton {
+        let button = ImageButton(title: title, coverImage: coverImage, subtitle: subtitle, images: images, text: text)
+        button.addTarget(self, action: #selector(openDetailsViewController), for: .touchUpInside)
         return button
     }
     
@@ -118,6 +114,18 @@ class MainViewController: UIViewController {
             NSLayoutConstraint.deactivate(portrait!)
             NSLayoutConstraint.activate(landscape!)
         }
+    }
+    
+    @objc func openDetailsViewController(sender: ImageButton) {
+        let detailView = DetailsViewController()
+        detailView.titleOnDetails = sender.title
+        detailView.typeOnDetails = sender.subTitle
+        detailView.mainImageOnDetails = sender.coverImage
+        detailView.arrayOfImages = sender.images
+        detailView.textOnDetails = sender.text
+        
+        detailView.modalPresentationStyle = .fullScreen
+        present(detailView, animated: true)
     }
     
 }

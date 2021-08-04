@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1042EB7626B43E790054F7FD /* ItemColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1042EB7526B43E790054F7FD /* ItemColor.m */; };
 		10508CB226B3EDF300D8A965 /* UIColor+CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10508CB126B3EDF300D8A965 /* UIColor+CustomColor.m */; };
+		105169C326B86BF60042AC17 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C226B86BF60042AC17 /* ExitButton.swift */; };
+		105169C526B937250042AC17 /* MainImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C426B937250042AC17 /* MainImage.swift */; };
+		105169C726B9853A0042AC17 /* ButtonGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C626B9853A0042AC17 /* ButtonGallery.swift */; };
+		105169C926B9E0620042AC17 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C826B9E0620042AC17 /* ImageViewController.swift */; };
+		105E0B0826B8264600A4C087 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105E0B0726B8264600A4C087 /* DetailsViewController.swift */; };
 		1072396B26B151F100FDED9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396A26B151F100FDED9A /* AppDelegate.swift */; };
 		1072396D26B151F100FDED9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396C26B151F100FDED9A /* SceneDelegate.swift */; };
 		1072397426B151F200FDED9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1072397326B151F200FDED9A /* Assets.xcassets */; };
@@ -39,6 +44,11 @@
 		1042EB7526B43E790054F7FD /* ItemColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemColor.m; sourceTree = "<group>"; };
 		10508CB026B3EDF300D8A965 /* UIColor+CustomColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColor.h"; sourceTree = "<group>"; };
 		10508CB126B3EDF300D8A965 /* UIColor+CustomColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColor.m"; sourceTree = "<group>"; };
+		105169C226B86BF60042AC17 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		105169C426B937250042AC17 /* MainImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImage.swift; sourceTree = "<group>"; };
+		105169C626B9853A0042AC17 /* ButtonGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGallery.swift; sourceTree = "<group>"; };
+		105169C826B9E0620042AC17 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		105E0B0726B8264600A4C087 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		1072396726B151F100FDED9A /* RSSchool_T9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSchool_T9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1072396A26B151F100FDED9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1072396C26B151F100FDED9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,8 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				10D3163826B1B9C500EEEB8C /* SettingsController */,
-				1072398126B172F600FDED9A /* MainViewController.swift */,
 				1072397F26B16FFF00FDED9A /* TabBarController.swift */,
+				1072398126B172F600FDED9A /* MainViewController.swift */,
+				105E0B0726B8264600A4C087 /* DetailsViewController.swift */,
+				105169C826B9E0620042AC17 /* ImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,6 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				1096B8F826B6AB4F00DE33F3 /* ImageButton.swift */,
+				105169C226B86BF60042AC17 /* ExitButton.swift */,
+				105169C426B937250042AC17 /* MainImage.swift */,
+				105169C626B9853A0042AC17 /* ButtonGallery.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,7 +341,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105169C526B937250042AC17 /* MainImage.swift in Sources */,
 				1072398026B16FFF00FDED9A /* TabBarController.swift in Sources */,
+				105169C926B9E0620042AC17 /* ImageViewController.swift in Sources */,
 				10D3164426B1E8E800EEEB8C /* ColorsViewController.m in Sources */,
 				1072396B26B151F100FDED9A /* AppDelegate.swift in Sources */,
 				10B1607226B5B6DB00277B54 /* story-3-path.swift in Sources */,
@@ -334,13 +351,16 @@
 				10B1607526B5B6DB00277B54 /* story-4-path.swift in Sources */,
 				10B1607826B5B6DB00277B54 /* story-2-path.swift in Sources */,
 				1096B8F926B6AB4F00DE33F3 /* ImageButton.swift in Sources */,
+				105169C726B9853A0042AC17 /* ButtonGallery.swift in Sources */,
 				1042EB7626B43E790054F7FD /* ItemColor.m in Sources */,
 				1072396D26B151F100FDED9A /* SceneDelegate.swift in Sources */,
 				1072398226B172F600FDED9A /* MainViewController.swift in Sources */,
+				105E0B0826B8264600A4C087 /* DetailsViewController.swift in Sources */,
 				10D3163C26B1BA0100EEEB8C /* SettingsViewController.m in Sources */,
 				10508CB226B3EDF300D8A965 /* UIColor+CustomColor.m in Sources */,
 				10B1607A26B5B6DB00277B54 /* story-1-path.swift in Sources */,
 				10D3163F26B1D61500EEEB8C /* SettingsModuleViewController.m in Sources */,
+				105169C326B86BF60042AC17 /* ExitButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
