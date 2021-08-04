@@ -13,6 +13,7 @@ class ImageButton: UIButton {
     private(set) var title: String = "string"
     private(set) var subTitle: String = "string"
     private(set) var text: String?
+    private(set) var paths: [CGPath]?
     private(set) var coverImage: UIImage = UIImage("story-1")
     private(set) var gradientView = UIView(frame: CGRect.zero)
     private(set) var gradient = CAGradientLayer()
@@ -26,13 +27,14 @@ class ImageButton: UIButton {
         return imageView
     }()
     
-    init(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String) {
+    init(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String, paths: [CGPath]) {
         super.init(frame: .zero)
         self.title = title
         self.coverImage = coverImage
         self.subTitle = subtitle
         self.images = images
         self.text = text
+        self.paths = paths
         setup()
         setupTitle()
         setupSubtitle()
@@ -59,8 +61,6 @@ class ImageButton: UIButton {
         layer.borderWidth = 1
         layer.borderColor = (UIColor.black).cgColor
         layer.cornerRadius = 18
-        
-        //backgroundColor = .black
 
         addSubview(backImage)
         backImage.translatesAutoresizingMaskIntoConstraints = false

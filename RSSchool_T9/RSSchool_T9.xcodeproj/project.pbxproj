@@ -13,6 +13,7 @@
 		105169C526B937250042AC17 /* MainImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C426B937250042AC17 /* MainImage.swift */; };
 		105169C726B9853A0042AC17 /* ButtonGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C626B9853A0042AC17 /* ButtonGallery.swift */; };
 		105169C926B9E0620042AC17 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169C826B9E0620042AC17 /* ImageViewController.swift */; };
+		105169CF26BACE5E0042AC17 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105169CE26BACE5E0042AC17 /* CanvasView.swift */; };
 		105E0B0826B8264600A4C087 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105E0B0726B8264600A4C087 /* DetailsViewController.swift */; };
 		1072396B26B151F100FDED9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396A26B151F100FDED9A /* AppDelegate.swift */; };
 		1072396D26B151F100FDED9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1072396C26B151F100FDED9A /* SceneDelegate.swift */; };
@@ -48,6 +49,7 @@
 		105169C426B937250042AC17 /* MainImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainImage.swift; sourceTree = "<group>"; };
 		105169C626B9853A0042AC17 /* ButtonGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGallery.swift; sourceTree = "<group>"; };
 		105169C826B9E0620042AC17 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		105169CE26BACE5E0042AC17 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		105E0B0726B8264600A4C087 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		1072396726B151F100FDED9A /* RSSchool_T9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSchool_T9.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1072396A26B151F100FDED9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				1096B8F826B6AB4F00DE33F3 /* ImageButton.swift */,
+				105169CE26BACE5E0042AC17 /* CanvasView.swift */,
 				105169C226B86BF60042AC17 /* ExitButton.swift */,
 				105169C426B937250042AC17 /* MainImage.swift */,
 				105169C626B9853A0042AC17 /* ButtonGallery.swift */,
@@ -349,6 +352,7 @@
 				10B1607226B5B6DB00277B54 /* story-3-path.swift in Sources */,
 				10B1606F26B5B6DB00277B54 /* Data.swift in Sources */,
 				10B1607526B5B6DB00277B54 /* story-4-path.swift in Sources */,
+				105169CF26BACE5E0042AC17 /* CanvasView.swift in Sources */,
 				10B1607826B5B6DB00277B54 /* story-2-path.swift in Sources */,
 				1096B8F926B6AB4F00DE33F3 /* ImageButton.swift in Sources */,
 				105169C726B9853A0042AC17 /* ButtonGallery.swift in Sources */,

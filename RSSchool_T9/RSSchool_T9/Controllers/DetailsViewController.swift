@@ -7,19 +7,25 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, UIScrollViewDelegate {
     
     var titleOnDetails:String?
     var typeOnDetails:String?
     var textOnDetails:String?
     weak var mainImageOnDetails: UIImage?
     var arrayOfImages: [UIImage]?
+    var pathsOfImages: [CGPath]?
+    var colorForSvg:UIColor?
+    var boolSwitch:Bool?
     
     var closeButton: ExitButton?
     lazy var scrollView = UIScrollView()
     lazy var stripView = UIView()
     lazy var mainImage = MainImage(mainImage: UIImage("story-1"), title: "", type: "")
     var button: ButtonGallery?
+    var horizontalScrollview: UIScrollView!
+    var horizontalStack: UIStackView!
+    var canvasImages: [UIView] = []
     
     let verticalStack: UIStackView = {
         let stackView = UIStackView()
@@ -32,12 +38,14 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
-                
+        
         setupScrollView()
         setupCloseButton()
         setupMainImageAndStrip()
         setupSubTitle()
         setupStack()
+        
+        //print(self.colorForSvg)
     }
     
     func setupScrollView(){
@@ -74,7 +82,7 @@ class DetailsViewController: UIViewController {
         mainImage.topAnchor.constraint(equalTo: closeButton!.bottomAnchor, constant: 30).isActive = true
         mainImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
         mainImage.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
-    
+        
         stripView.backgroundColor = .white
         scrollView.addSubview(stripView)
         stripView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +98,6 @@ class DetailsViewController: UIViewController {
         } else {
             setupStory()
         }
-        
     }
     
     func buildGalleryButton(coverImage: UIImage) -> ButtonGallery {
@@ -98,7 +105,7 @@ class DetailsViewController: UIViewController {
         button!.addTarget(self, action: #selector(openDetailsViewController), for: .touchUpInside)
         return button!
     }
-        
+    
     func setupSubTitle() {
         
         let typeLabel = UILabel()
@@ -142,7 +149,77 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    func buildCanvas(path: CGPath) -> CanvasView {
+        let canvas = CanvasView(path: path)
+        return canvas
+    }
+    
     func setupStory() {
+        
+        horizontalScrollview = UIScrollView()
+        horizontalScrollview.delegate = self
+        horizontalScrollview.showsHorizontalScrollIndicator = false
+        view.addSubview(horizontalScrollview)
+        
+        horizontalScrollview.translatesAutoresizingMaskIntoConstraints = false
+        horizontalScrollview.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        horizontalScrollview.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        horizontalScrollview.topAnchor.constraint(equalTo: stripView.bottomAnchor, constant: 50).isActive = true
+        horizontalScrollview.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        horizontalStack = UIStackView()
+        horizontalStack.axis = .horizontal
+        horizontalStack.spacing = 100
+        horizontalStack.distribution = .fillEqually
+        
+        horizontalScrollview.addSubview(horizontalStack)
+        horizontalStack.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStack.heightAnchor.constraint(equalTo: horizontalScrollview.heightAnchor, multiplier: 0.75).isActive = true
+        horizontalStack.leadingAnchor.constraint(equalTo: horizontalScrollview.leadingAnchor, constant: 80).isActive = true
+        horizontalStack.trailingAnchor.constraint(equalTo: horizontalScrollview.trailingAnchor, constant: -50).isActive = true
+        horizontalStack.topAnchor.constraint(equalTo: horizontalScrollview.topAnchor, constant: 12.5).isActive = true
+        horizontalStack.bottomAnchor.constraint(equalTo: horizontalScrollview.bottomAnchor, constant: -12.5).isActive = true
+        
+        //        horizontalScrollview.backgroundColor = .red
+        //        horizontalStack.backgroundColor = .darkGray
+        
+        for item in pathsOfImages! {
+            let newPic: UIView = buildCanvas(path: item)
+            horizontalStack.addArrangedSubview(newPic)
+            canvasImages.append(newPic)
+        }
+        
+        for i in canvasImages.indices {
+            if horizontalScrollview.bounds.contains(horizontalScrollview.convert(canvasImages[i].bounds, from: canvasImages[i])) {
+                if canvasImages[i].layer.sublayers?.count == nil {
+                    let shapeLayer = CAShapeLayer()
+                    shapeLayer.path = pathsOfImages![i]
+                    shapeLayer.strokeStart = 0
+                    shapeLayer.strokeEnd = 0
+                    shapeLayer.strokeColor = self.colorForSvg?.cgColor
+                    shapeLayer.fillColor = UIColor.clear.cgColor
+                    shapeLayer.lineWidth = 1
+                    
+                    canvasImages[i].layer.addSublayer(shapeLayer)
+                    if (boolSwitch!){
+                        Timer.scheduledTimer(withTimeInterval: 0.0167, repeats: true) { timer in
+                            
+                            if (shapeLayer.strokeEnd >= 1) {
+                                timer.invalidate()
+                            }
+                            
+                            let line:CGFloat = 1.0 / (60.0 * 3)
+                            shapeLayer.strokeEnd += line
+                        }
+                    } else {
+                        shapeLayer.strokeEnd = 1
+                    }
+                    
+                }
+            }
+        }
+        
+        // ТЕКСТ ИСТОРИИ
         let textLabel = UILabel()
         textLabel.text = self.textOnDetails
         textLabel.textColor = .white
@@ -155,17 +232,15 @@ class DetailsViewController: UIViewController {
         viewLabel.layer.borderColor = UIColor.white.cgColor
         viewLabel.layer.cornerRadius = 8
         viewLabel.backgroundColor = .black
-
         viewLabel.addSubview(textLabel)
-        scrollView.addSubview(viewLabel)
-
-        viewLabel.translatesAutoresizingMaskIntoConstraints = false
-        viewLabel.topAnchor.constraint(equalTo: stripView.bottomAnchor, constant: 50).isActive = true
-        viewLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         
+        scrollView.addSubview(viewLabel)
+        viewLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewLabel.topAnchor.constraint(equalTo: horizontalScrollview.bottomAnchor, constant: 50).isActive = true
+        viewLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30).isActive = true
         viewLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
         viewLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20).isActive = true
-
+        
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.topAnchor.constraint(equalTo: viewLabel.topAnchor, constant: 30).isActive = true
         textLabel.bottomAnchor.constraint(equalTo: viewLabel.bottomAnchor,constant: -30).isActive = true
@@ -176,13 +251,49 @@ class DetailsViewController: UIViewController {
     @objc func openDetailsViewController(sender: ButtonGallery) {
         let detailView = ImageViewController()
         detailView.image = sender.coverImage
-                
+        
         detailView.modalPresentationStyle = .fullScreen
         present(detailView, animated: true)
     }
     
     @objc func closeWindow() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if boolSwitch! {
+            for i in canvasImages.indices {
+                if scrollView.bounds.contains(scrollView.convert(canvasImages[i].bounds, from: canvasImages[i])) {
+                    if canvasImages[i].layer.sublayers?.count == nil {
+                        let shapeLayer = CAShapeLayer()
+                        shapeLayer.path = pathsOfImages![i]
+                        shapeLayer.strokeStart = 0
+                        shapeLayer.strokeEnd = 0
+                        shapeLayer.strokeColor = UIColor.yellow.cgColor
+                        shapeLayer.fillColor = UIColor.clear.cgColor
+                        shapeLayer.lineWidth = 1
+                        
+                        canvasImages[i].layer.addSublayer(shapeLayer)
+                        
+                        Timer.scheduledTimer(withTimeInterval: 0.0167, repeats: true) { timer in
+                            
+                            if (shapeLayer.strokeEnd >= 1) {
+                                timer.invalidate()
+                            }
+                            
+                            let line:CGFloat = 1.0 / (60.0 * 3)
+                            shapeLayer.strokeEnd += line
+                        }
+                        
+                    }
+                } else {
+                    if canvasImages[i].layer.sublayers?.count == 1 {
+                        canvasImages[i].layer.sublayers![0].removeFromSuperlayer()
+                    }
+                }
+            }
+        }
+        
     }
     
 }

@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<NSString *> *dataSource;
 @property (nonatomic, strong) NSIndexPath *defaultRow;
+@property (nonatomic, strong) UISwitch *switchView;
+@property (nonatomic, strong) NSString *switchString;
 
 @end
 
@@ -27,7 +29,8 @@
     self.dataSource = [NSMutableArray arrayWithObjects:@"Draw stories", @"Stroke color", nil];
     
     [self setupTableView];
-    self.defaultRow = [NSIndexPath indexPathForRow:8 inSection:0];
+    self.defaultRow = [NSIndexPath indexPathForRow:6 inSection:0];
+    self.switchString = @"On";
 }
 
 - (void)setupNavigationBar {
@@ -99,20 +102,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = nil;
-    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
-    [switchView setOn:YES animated:NO];
+    self.switchView = [[UISwitch alloc] initWithFrame:CGRectZero];
+    [self.switchView setOn:YES animated:YES];
+    [self.switchView addTarget: self action: @selector(flip:) forControlEvents:UIControlEventValueChanged];
 
     switch ([indexPath row])
         {
             case 0:
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellId"];
-                cell.accessoryView = switchView;
+                cell.accessoryView = self.switchView;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
             case 1:
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellId"];
-                [[cell detailTextLabel] setText:@"#e87aa4"];
-                [cell detailTextLabel].textColor = [UIColor color9];
+                [[cell detailTextLabel] setText:@"#f3af22"];
+                [cell detailTextLabel].textColor = [UIColor color7];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             default:
@@ -131,6 +135,25 @@
     
     if ([indexPath row] == 1) {
         [self push];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:NO];
+    
+    if ([self.switchString isEqualToString:@"On"]) {
+        [self.delegate setSwitch:YES andColor:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.textColor];
+    } else {
+        [self.delegate setSwitch:NO andColor:[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.textColor];
+    }
+}
+
+-  (void) flip: (id) sender {
+    UISwitch *onoff = (UISwitch *) sender;
+    if (onoff.on) {
+        self.switchString = @"On";
+    } else {
+        self.switchString = @"Off";
     }
 }
 

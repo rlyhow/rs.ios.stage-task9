@@ -7,9 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, sendParam {
+   
+    
     
     let scrollView = UIScrollView()
+    var colorForSvg:UIColor?
+    var boolSwitch:Bool?
     
     var portrait:[NSLayoutConstraint]?
     var landscape:[NSLayoutConstraint]?
@@ -21,6 +25,14 @@ class MainViewController: UIViewController {
         setupViews()
         setupStackConstraint()
         setupScrollView()
+        
+        colorForSvg = UIColor(red: 0.953, green: 0.686, blue: 0.133, alpha: 1)
+        boolSwitch = true
+    }
+    
+    func stateSwitch(_ switchInfo: Bool, colorInfo color: UIColor) {
+        self.boolSwitch = switchInfo
+        self.colorForSvg = color
     }
     
     func setupScrollView(){
@@ -66,15 +78,15 @@ class MainViewController: UIViewController {
         for item in FillingData.data {
             switch item {
             case .story(let object):
-                leftRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Story", images: [], text: object.text))
+                leftRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Story", images: [], text: object.text, paths: object.paths))
             case .gallery(let object):
-                rightRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Gallery", images: object.images, text: ""))
+                rightRow.addArrangedSubview(buildButton(title: object.title, coverImage: object.coverImage, subtitle: "Gallery", images: object.images, text: "", paths: []))
             }
         }
     }
     
-    func buildButton(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String) -> ImageButton {
-        let button = ImageButton(title: title, coverImage: coverImage, subtitle: subtitle, images: images, text: text)
+    func buildButton(title: String, coverImage: UIImage, subtitle: String, images: [UIImage], text: String, paths: [CGPath]) -> ImageButton {
+        let button = ImageButton(title: title, coverImage: coverImage, subtitle: subtitle, images: images, text: text, paths: paths)
         button.addTarget(self, action: #selector(openDetailsViewController), for: .touchUpInside)
         return button
     }
@@ -123,6 +135,9 @@ class MainViewController: UIViewController {
         detailView.mainImageOnDetails = sender.coverImage
         detailView.arrayOfImages = sender.images
         detailView.textOnDetails = sender.text
+        detailView.pathsOfImages = sender.paths
+        detailView.boolSwitch = self.boolSwitch
+        detailView.colorForSvg = colorForSvg
         
         detailView.modalPresentationStyle = .fullScreen
         present(detailView, animated: true)

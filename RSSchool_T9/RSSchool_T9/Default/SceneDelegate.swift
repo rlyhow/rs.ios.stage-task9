@@ -28,6 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarContoller.viewControllers = [mainView, settingView]
         
+        settingView.delegateM = mainView
+        
         window?.rootViewController = tabBarContoller
         window?.makeKeyAndVisible()
     }

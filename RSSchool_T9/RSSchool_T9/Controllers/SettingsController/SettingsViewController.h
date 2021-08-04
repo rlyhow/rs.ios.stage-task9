@@ -10,9 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol sendParam
+// объявляем метод делегата
+- (void)stateSwitch:(BOOL)switchInfo colorInfo:(UIColor *)color;
+@end
+
 @interface SettingsViewController : UINavigationController
 
 @property(strong, nonatomic) SettingsModuleViewController *moduleVC;
+@property (weak, nonatomic) id<sendParam> delegateM;
 
 @end
 

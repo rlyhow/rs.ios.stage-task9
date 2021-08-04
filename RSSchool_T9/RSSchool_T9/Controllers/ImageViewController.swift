@@ -29,18 +29,18 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
         scrollView.maximumZoomScale = 3
         scrollView.minimumZoomScale = 1
-        //1
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.frameLayoutGuide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
         scrollView.frameLayoutGuide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         scrollView.frameLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.frameLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        //2
+        
         scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor).isActive = true
         scrollView.contentLayoutGuide.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor).isActive = true
         scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: scrollView.frameLayoutGuide.topAnchor).isActive = true
         scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: scrollView.frameLayoutGuide.bottomAnchor).isActive = true
-        //3
+        
         
         imgView = UIImageView(image: image)
         imgView.contentMode = .scaleAspectFit
@@ -81,8 +81,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
             closeBtn?.isHidden = true
             closeBtn?.isEnabled = false
         }
-        
-        print("scrollViewTapped")
     }
     
     @objc func closeWindow() {
